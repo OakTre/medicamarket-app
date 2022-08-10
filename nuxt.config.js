@@ -57,7 +57,8 @@ export default {
 
   plugins: [
     '~plugins/gl-components',
-    '@plugins/mixins/getDynamicFile.js'
+    '@plugins/mixins/getDynamicFile.js',
+    '@plugins/vClickOutSide.js'
   ],
 
   components: true,

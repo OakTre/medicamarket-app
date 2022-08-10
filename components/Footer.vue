@@ -13,6 +13,7 @@ footer.footer
         ul.footer__nav-list
           li.footer__nav-item(v-for="item in nav3")
             a.footer__nav-link(:href="item.link") {{ item.name }}
+
       .footer__top-block
         a.footer__tel(href="tel:+73852570077", data-text="Бесплатно по России") (3852) 57–00–77
 
@@ -25,6 +26,7 @@ footer.footer
         ul.footer__nav-list
           li.footer__nav-item(v-for="item in nav4")
             a.footer__nav-link(:href="item.link") {{ item.name }}
+
       .footer__top-block
         .footer__shield
           p.footer__shield-text
@@ -35,8 +37,8 @@ footer.footer
               Button._secondary.small._no-icon
                 span.button__name
                   | Подписаться
-              //- +button("Подписаться", null, "_secondary small _no-icon")
             p Нажимая кнопку «Подписаться» вы соглашаетесь с политикой конфиденциальности
+
     .grid-container.footer__copyright
       .grid-container__block.footer__copyright-block
         p © Все права защищены 2022

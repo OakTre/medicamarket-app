@@ -10,10 +10,10 @@
       | {{ name }}
     .catalog-cart-small__details-wrapper
       span.catalog-cart-small__is-empty(v-if="isEmpty") Нет в наличии
-      span.catalog-cart-small__price(:data-old-price="isOldPrice" v-else)
-        | {{ price }}
+      span.catalog-cart-small__price(:data-old-price="isOldPriceText" v-if="price")
+        | {{ priceText }}
       span.catalog-cart-small__count(v-if="count")
-        | {{ count }}
+        | {{ countText }}
   button.catalog-cart-small__delete-btn(v-if="icon")
     svg-icon.catalog-cart-small__icon(
       name="trash",
@@ -41,11 +41,14 @@ export default {
       type: Boolean,
       default: false
     },
-    isOldPrice: {
-      type: Boolean,
-      default: false
+    isOldPriceText: {
+      type: String,
+      default: ''
     },
     count: {
+      type: Boolean
+    },
+    countText: {
       type: String,
       default: '2шт'
     },
@@ -54,6 +57,9 @@ export default {
       default: false
     },
     price: {
+      type: Boolean
+    },
+    priceText: {
       type: String,
       default: '4 334 ₽'
     }

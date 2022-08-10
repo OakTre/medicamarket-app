@@ -1,11 +1,18 @@
 <template lang="pug">
-.popup
+.popup(:class="isOpen ? 'is-shown' : ''")
   .popup__container
     slot
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'Popup',
+  props: {
+    isOpen: {
+      type: Boolean
+    }
+  }
+}
 </script>
 
 <style lang="scss">
