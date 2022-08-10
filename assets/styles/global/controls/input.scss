@@ -1,0 +1,25 @@
+@import "@/assets/styles/global/helpers/mixins";
+
+.input {
+  background-color: var(--color-grey-200);
+  padding: 1.2rem 1.6rem;
+  border-radius: 0.8rem;
+  color: var(--color-base-dark);
+  font: var(--font-text-t3);
+  width: 100%;
+  height: 4.4rem;
+
+  &.mod-big {
+    height: 5.6rem;
+    font: var(--font-btn-1);
+
+    @include placeholder {
+      font: var(--font-btn-1);
+    }
+  }
+
+  @include placeholder {
+    color: var(--color-grey-600);
+    font: var(--font-text-t3);
+  }
+}
