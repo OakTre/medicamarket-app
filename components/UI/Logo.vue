@@ -1,5 +1,5 @@
 <template lang="pug">
-  a.logo(href="./")
+  nuxt-link.logo(to="/")
     img.logo__img(src="@/assets/img/logo.svg" alt="Логотип Медикамаркет")
 </template>
 <script>

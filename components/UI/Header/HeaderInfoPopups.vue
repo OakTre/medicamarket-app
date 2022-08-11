@@ -8,10 +8,14 @@
         .popup__head
           span.popup__head-legend Ваш город {{ city }}
         .popup__footer
-          Button.small._no-icon.popup__footer-btn
+          Button.small._no-icon.popup__footer-btn(
+            @click.native="closeCityPopup"
+          )
             span.button__name
               | Да, все верно
-          Button.small._no-icon._stroke.popup__footer-btn
+          Button.small._no-icon._stroke.popup__footer-btn(
+            @click.native="openCityModal"
+          )
             span.button__name
               | Выбрать город
 
@@ -29,6 +33,12 @@ export default {
   methods: {
     openCityPopup () {
       this.$store.commit('SET_CITY_POPUP', true)
+    },
+    closeCityPopup () {
+      this.$store.commit('SET_CITY_POPUP', false)
+    },
+    openCityModal () {
+      this.$store.commit('SET_GLOBAL_MODAL', true)
     }
   }
 }

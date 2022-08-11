@@ -1,10 +1,15 @@
 <template lang="pug">
-.modal__container(:class="isOpen ? 'is-open' : ''")
-  button.modal-close.modal__close-btn(type="button")
-    span
-    span
-  .modal__content
-    .modal__legend Выберите город
+.modal(@click="closeModal" :class="isOpen ? 'is-open' : ''")
+  .modal__container(
+    :class="isOpen ? 'modal-open' : ''"
+    @click.stop
+    v-scroll-lock="isOpen"
+  )
+    button.modal-close.modal__close-btn(type="button" @click="closeModal")
+      span
+      span
+    .modal__content
+      slot
 </template>
 
 <script>
@@ -13,6 +18,11 @@ export default {
     isOpen: {
       type: Boolean,
       default: false
+    }
+  },
+  methods: {
+    closeModal () {
+      this.$emit('close', this.isOpen)
     }
   }
 }

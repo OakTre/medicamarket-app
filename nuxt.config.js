@@ -58,7 +58,8 @@ export default {
   plugins: [
     '~plugins/gl-components',
     '@plugins/mixins/getDynamicFile.js',
-    '@plugins/vClickOutSide.js'
+    '@plugins/vClickOutSide.js',
+    '@plugins/ScrollLock.js'
   ],
 
   components: true,
