@@ -1,10 +1,10 @@
 <template lang="pug">
   .header-info-popups
     .header-info-popups__popup-wrapper
-      button.header-info-popups__btn._city( v-on:click="openCityPopup") {{ city }}
+      button.js-info-btn.header-info-popups__btn._city( @click="openCityPopup") {{ city }}
 
       //- попап выбор города
-      Popup(:isOpen="isCityPopupOpen" v-click-outside="onClickOutside" class="popup_city")
+      Popup(:isOpen="$store.state.poupCity" class="popup_city")
         .popup__head
           span.popup__head-legend Ваш город {{ city }}
         .popup__footer
@@ -22,22 +22,13 @@ export default {
   name: 'HeaderInfoPopups',
   data () {
     return {
-      isCityPopupOpen: false,
       flag: false,
       city: 'Барнаул'
     }
   },
   methods: {
     openCityPopup () {
-      this.isCityPopupOpen = true
-    },
-    onClickOutside (event) {
-      if (this.isCityPopupOpen === true && this.flag === false) {
-        this.flag = true
-      } else {
-        this.isCityPopupOpen = false
-        this.flag = false
-      }
+      this.$store.commit('SET_CITY_POPUP', true)
     }
   }
 }

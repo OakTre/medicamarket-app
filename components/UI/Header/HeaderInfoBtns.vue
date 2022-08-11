@@ -1,11 +1,11 @@
 <template lang="pug">
 .header-popups
   .header-popups__btn-wrapper
-    button.info-btn(v-on:click="OpenLikePopup")
+    button.info-btn.js-info-btn(@click="OpenLikePopup")
       svg-icon.info-btn__icon(name="like", width="24", height="24")
       span.info-btn__count {{ carts.length }}
     //- попап избранное
-    Popup(:isOpen="isLikePoupOpen" v-click-outside="onClickOutside")
+    Popup(:isOpen="$store.state.popupLike")
       ul.popup__body
         li.popup__body-item(v-for="cart in carts")
           CatalogCartSmall(:name="cart.name" count=false price=false)
@@ -15,11 +15,11 @@
             | Смотреть избранное
 
   .header-popups__btn-wrapper
-    button.info-btn(v-on:click="OpenComparisonPopup")
+    button.info-btn.js-info-btn(@click="OpenComparisonPopup")
       svg-icon.info-btn__icon(name="comparison", width="24", height="24")
       span.info-btn__count {{ carts.length }}
     //- попап сравнения
-    Popup(:isOpen="isComparisonPopupOpen" v-click-outside="onClickOutside")
+    Popup(:isOpen="$store.state.popupComparison")
       ul.popup__body
         li.popup__body-item(v-for="cart in carts")
           CatalogCartSmall(:name="cart.name")
@@ -29,11 +29,11 @@
             | Сравнить товары
 
   .header-popups__btn-wrapper
-    button.info-btn(v-on:click="OpenCartPopup")
+    button.info-btn.js-info-btn(@click="OpenCartPopup")
       svg-icon.info-btn__icon(name="cart", width="24", height="24")
       span.info-btn__count {{ cartsCatalog.length }}
     //- попап корзины
-    Popup(:isOpen="isCartPopupOpen" v-click-outside="onClickOutside")
+    Popup(:isOpen="$store.state.popupCart")
       .popup__head
         span.popup__head-legend В корзине {{ cartsCatalog.length }} товаров
         span.popup__head-legend 16 940 ₽
@@ -80,32 +80,18 @@ export default {
         { name: 'Тонометр LD 30 с сетевым адаптером', icon: true, price: true, count: true },
         { name: 'Тонометр LD 30 с сетевым адаптером', icon: true, price: true, count: true, isOldPriceText: '6 322 ₽' },
         { name: 'Тонометр LD 30 с сетевым адаптером', icon: true, price: true, count: true }
-      ],
-      isLikePoupOpen: false,
-      isComparisonPopupOpen: false,
-      isCartPopupOpen: false
+      ]
     }
   },
   methods: {
     OpenLikePopup () {
-      this.isComparisonPopupOpen = false
-      this.isCartPopupOpen = false
-      this.isLikePoupOpen = true
+      this.$store.commit('SET_LIKE_POPUP', true)
     },
     OpenComparisonPopup () {
-      this.isLikePoupOpen = false
-      this.isCartPopupOpen = false
-      this.isComparisonPopupOpen = true
+      this.$store.commit('SET_COMP_POPUP', true)
     },
     OpenCartPopup () {
-      this.isLikePoupOpen = false
-      this.isComparisonPopupOpen = false
-      this.isCartPopupOpen = true
-    },
-    onClickOutside (event) {
-      this.isLikePoupOpen = false
-      this.isComparisonPopupOpen = false
-      this.isCartPopupOpen = false
+      this.$store.commit('SET_CART_POPUP', true)
     }
   }
 }

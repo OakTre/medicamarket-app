@@ -1,5 +1,8 @@
 <template lang="pug">
-.popup(:class="isOpen ? 'is-shown' : ''")
+.popup(
+  :class="isOpen ? 'is-shown' : ''"
+  v-click-outside="onClickOutside"
+)
   .popup__container
     slot
 </template>
@@ -10,6 +13,16 @@ export default {
   props: {
     isOpen: {
       type: Boolean
+    }
+  },
+  methods: {
+    onClickOutside (event) {
+      if (!event.target.classList.contains('js-info-btn') && !event.target.closest('.popup')) {
+        this.$store.commit('SET_LIKE_POPUP', false)
+        this.$store.commit('SET_COMP_POPUP', false)
+        this.$store.commit('SET_CART_POPUP', false)
+        this.$store.commit('SET_CITY_POPUP', false)
+      }
     }
   }
 }
